@@ -1,10 +1,20 @@
-web:
-  image: nginx:1.9
-  ports:
-    - "8092:80"
-  volumes:
-    - ./config/nginx/sites-enabled:/etc/nginx/sites-enabled
-    - ./config/nginx/conf.d:/etc/nginx/conf.d:ro
-    - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    - ./logs:/var/log/nginx
-    - ./web:/var/www/html
+version: '2'
+
+services:
+  web:
+    image: nginx:1-alpine
+    ports:
+      - "9080:80"
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./web:/usr/share/nginx/html
+    networks:
+      - front
+      - back
+
+networks:
+  front:
+    driver: bridge
+  back:
+    driver: bridge

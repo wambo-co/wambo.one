@@ -8,9 +8,17 @@ services:
     volumes:
       - ./config/nginx/conf.d:/etc/nginx/conf.d:ro
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./web:/usr/share/nginx/html
+    volumes_from:
+      - phpfpm:ro
     networks:
       - front
+      - back
+
+  phpfpm:
+    image: php:7-fpm-alpine
+    volumes:
+      - ./web:/var/www/html
+    networks:
       - back
 
 networks:

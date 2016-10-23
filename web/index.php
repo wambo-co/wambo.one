@@ -60,7 +60,7 @@
 
 	<article class="container">
 		<header class="jumbotron">
-			<img src="/assets/images/logo/wambo-logo-with-tag-line-512x512.png" title="Wambo - The web shop for everyone">
+			<img src="/assets/images/logo/wambo-logo-with-tag-line-512x512.png" title="Wambo - The web shop for everyone" class="img-responsive">
 		</header>
 
 		<section class="row text-center">

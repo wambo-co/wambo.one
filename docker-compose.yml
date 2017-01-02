@@ -14,8 +14,8 @@ services:
       - front
       - back
     labels:
-      - "SERVICE_80_NAME=wambo.co"
-      - "SERVICE_80_TAGS=urlprefix-wambo.co/,urlprefix-www.wambo.co/"
+      - "SERVICE_80_NAME=wambo.one"
+      - "SERVICE_80_TAGS=urlprefix-wambo.one/,urlprefix-www.wambo.one/"
       - "SERVICE_80_CHECK_HTTP=/"
       - "SERVICE_80_CHECK_INTERVAL=10s"
       - "SERVICE_80_CHECK_TIMEOUT=5s"

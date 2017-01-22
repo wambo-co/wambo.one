@@ -1,0 +1,5 @@
+FROM php:7-fpm-alpine
+
+ADD web /var/www/html
+
+VOLUME /var/www/html

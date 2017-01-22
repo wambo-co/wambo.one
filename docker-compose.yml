@@ -1,34 +1,16 @@
 version: '2'
-
 services:
-  server:
-    image: nginx:1-alpine
-    ports:
-      - 80
-    volumes:
-      - ./config/nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    volumes_from:
-      - phpfpm:ro
-    networks:
-      - front
-      - back
-    labels:
-      - "SERVICE_80_NAME=wambo.one"
-      - "SERVICE_80_TAGS=urlprefix-wambo.one/,urlprefix-www.wambo.one/"
-      - "SERVICE_80_CHECK_HTTP=/"
-      - "SERVICE_80_CHECK_INTERVAL=10s"
-      - "SERVICE_80_CHECK_TIMEOUT=5s"
-
   phpfpm:
-    image: php:7-fpm-alpine
-    volumes:
-      - ./web:/var/www/html
-    networks:
-      - back
-
-networks:
-  front:
-    driver: bridge
-  back:
-    driver: bridge
+    image: registry.002.io:5000/andreaskoch/wambo.one-phpfpm:latest
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+  webserver:
+    image: registry.002.io:5000/andreaskoch/wambo.one-webserver:latest
+    stdin_open: true
+    tty: true
+    links:
+    - phpfpm:phpfpm
+    labels:
+      io.rancher.container.pull_image: always
